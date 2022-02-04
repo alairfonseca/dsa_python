@@ -31,7 +31,6 @@ def to_cents(amount):
     return int(amount * 100)
 
 
-
 def make_change(charge_amount, given_amount):
     if given_amount < charge_amount:
         return 0
