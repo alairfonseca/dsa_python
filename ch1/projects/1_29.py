@@ -1,6 +1,6 @@
 """
-1.29 Write a Python program that outputs all possible strings formed by using thecharacters
-characters ‘c’, ‘a’, ‘t’, ‘d’, ‘o’, and ‘g’ exactly once.
+1.29 Write a Python program that outputs all possible strings formed by using
+thecharacters characters ‘c’, ‘a’, ‘t’, ‘d’, ‘o’, and ‘g’ exactly once.
 """
 
 
