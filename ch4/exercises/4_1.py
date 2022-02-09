@@ -19,3 +19,5 @@ if __name__ == "__main__":
     print(find_maximum(s, 0))
     s = [20, 31, 47, 46, 45, 48, 18, 11, 20, 17, 16]
     print(find_maximum(s, 0))
+    s = [20, 31, 47, 46, 45, 48, 18, 11, 20, 17, 49]
+    print(find_maximum(s, 0))
