@@ -8,7 +8,7 @@ def order_by_even(sequence):
     if len(sequence) == 1:
         return sequence
     if sequence[0] % 2 == 0:
-        return [sequence[0]] + order_by_even(sequence[1:])
+        return sequence[:1] + order_by_even(sequence[1:])
     else:
         aux = sequence[0]
         del sequence[0]
