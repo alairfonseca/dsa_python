@@ -10,9 +10,15 @@ class DynamicArray:
     def __len__(self):
         return self._n
 
+    def __str__(self):
+        ",".join([str(i) for i in self._A])
+
     def __getitem__(self, index):
-        if not 0 <= index < self._n:
+        if index > self._n:
             raise IndexError('invalid index')
+        while index < 0:
+            index += len(self)
+
         return self._A[index]
 
     def append(self, obj):
@@ -65,7 +71,12 @@ if __name__ == "__main__":
     print("da[1]:", da[1])
 
     da.insert(2, da[2] * 2)
-    print("da[2]:", da[2], "len:", da._n)
+    print("da[2]:", da[2], "len:", len(da))
 
+    for i in da:
+        print(i)
+    #print("da:", ",".join([str(i) for i in da]))
     da.remove(4)
-    print("da[2]:", da[2], "len:", da._n)
+    #print("da:", ",".join([str(i) for i in da]))
+    print("da[2]:", da[2], "len:", len(da))
+    print("da[-1]:", da[-1], da[len(da) - 1])
