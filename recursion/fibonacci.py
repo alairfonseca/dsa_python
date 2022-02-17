@@ -1,12 +1,17 @@
 def fib(n):
+    assert n >= 0 and int(n) == n, "n must be positive"
+    
     if n <= 1:
         return n
     return fib(n - 1) + fib(n - 2)
 
 
 def better_fib(n):
+    assert n >= 0 and int(n) == n, "n must be positive"
+
     if n <= 1:
         return (n, 0)
+    
     (a, b) = better_fib(n - 1)
     
     print(a, b)
@@ -20,3 +25,5 @@ if __name__ == "__main__":
     print(fib(10))
     print("====================")
     better_fib(5)
+
+    print(fib(-5))
