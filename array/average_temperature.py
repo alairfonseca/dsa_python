@@ -11,6 +11,7 @@ def average_temperature():
         days_temperatures[i] = day_temp
 
     average = sum(days_temperatures) / days_qt
+
     for day_temp in days_temperatures:
         if day_temp > average:
             days_above_average += 1
