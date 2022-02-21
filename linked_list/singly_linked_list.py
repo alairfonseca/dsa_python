@@ -51,6 +51,17 @@ class SinglyLinkedList:
                 cursor = cursor._next
                 cursor_count += 1
 
+    def search(self, value):
+        if not self._head:
+            raise Exception("Empty list")
+
+        node = self._head
+
+        while node:
+            if node._value == value:
+                return node._value
+            node = node._next
+
     def __iter__(self):
         node = self._head
 
@@ -94,3 +105,8 @@ if __name__ == "__main__":
 
     slinklist.insert(8, -1)
     print(slinklist)
+
+    slinklist.insert(9, 2)
+    print(slinklist)
+
+    print(slinklist.search(2))
