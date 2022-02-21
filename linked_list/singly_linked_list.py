@@ -10,6 +10,7 @@ class SinglyLinkedList:
     def __init__(self):
         self._head = None
         self._tail = None
+        self._n = 0
     
     def append(self, value):
         node = Node(value)
@@ -21,7 +22,34 @@ class SinglyLinkedList:
             self._head = node
 
         self._tail = node
-        
+        self._n += 1
+
+    def insert(self, value, index):
+        new_node = Node(value)
+
+        if index >= self._n:
+            raise IndexError("Index out of range")
+    
+        if index == 0:
+            if self._head:
+                new_node._next = self._head
+            self._head = new_node
+            self._n += 1
+        elif index == -1:
+            self.append(value)
+        else:
+            cursor = self._head
+            cursor_count = 1
+            
+            while cursor:
+                if cursor_count == index:
+                    new_node._next = cursor._next
+                    cursor._next = new_node
+                    self._n += 1
+                    
+                    return
+                cursor = cursor._next
+                cursor_count += 1
 
     def __iter__(self):
         node = self._head
@@ -30,6 +58,15 @@ class SinglyLinkedList:
             yield node
             node = node._next
 
+    def __str__(self):
+        strng = ""
+        for i in self:
+            strng += ("{0} -> ".format(i))
+
+        return strng
+
+    def __len__(self):
+        return self._n
 
 
 if __name__ == "__main__":
@@ -37,8 +74,23 @@ if __name__ == "__main__":
     
     slinklist.append(1)
     slinklist.append(2)
+    
+    print(slinklist)
 
-    print(slinklist._head._next, slinklist._head._next._next)
+    slinklist.insert(3, 1)
+    print(slinklist)
+    
+    slinklist.insert(4, 0)
+    print(slinklist)
 
-    for i in slinklist:
-        print(i)
+    slinklist.insert(5, 3)
+    print(slinklist)
+
+    slinklist.insert(6, 4)
+    print(slinklist)
+
+    slinklist.append(7)
+    print(slinklist)
+
+    slinklist.insert(8, -1)
+    print(slinklist)
