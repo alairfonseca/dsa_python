@@ -1,4 +1,3 @@
-from unsorted_table_map import UnsortedTableMap
 from chain_hash_map import ChainHashMap
 
 # cyclic-shift hash code
@@ -34,5 +33,4 @@ if __name__ == "__main__":
 
     for i in chmap:
         print(chmap[i])
-
 
