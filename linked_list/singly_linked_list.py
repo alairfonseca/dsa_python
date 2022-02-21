@@ -54,13 +54,12 @@ class SinglyLinkedList:
     def search(self, value):
         if not self._head:
             raise Exception("Empty list")
+        
+        for i in self:
+            if i._value == value:
+                return i._value
 
-        node = self._head
-
-        while node:
-            if node._value == value:
-                return node._value
-            node = node._next
+        return None
 
     def __iter__(self):
         node = self._head
@@ -110,3 +109,4 @@ if __name__ == "__main__":
     print(slinklist)
 
     print(slinklist.search(2))
+    print(slinklist.search(11))
