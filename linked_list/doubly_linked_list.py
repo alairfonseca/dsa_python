@@ -155,5 +155,6 @@ if __name__ == "__main__":
     print(list)
     list.delete(2)
     print(list)
-
+    list.delete(1)
+    print(list)
     
