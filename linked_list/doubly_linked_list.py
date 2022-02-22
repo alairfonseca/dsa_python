@@ -53,7 +53,10 @@ class DoublyLinkedList:
             if cursor_count == index:
                 new_node.prev = cursor
                 new_node.next = cursor.next
+
+                cursor.next.prev = new_node
                 cursor.next = new_node
+                
                 self.n += 1
                 return
             cursor = cursor.next
@@ -71,6 +74,7 @@ class DoublyLinkedList:
                 self.tail = None
             else:
                 self.head = self.head.next
+                self.head.prev = None
             self.n -= 1
             return
 
@@ -100,6 +104,13 @@ class DoublyLinkedList:
                 return i.value
 
         return None
+
+    def reverse_iter(self):
+        node = self.tail
+
+        while node:
+            yield node
+            node = node.prev
 
     def __iter__(self):
         node = self.head
@@ -143,7 +154,11 @@ if __name__ == "__main__":
     print(list)
     list.insert(8, 0)
     print(list)
+    
+    for i in list.reverse_iter():
+        print(i, end="")
 
+    print("\nsearch:")
     print(list.search(4))
     print(list.search(7))
 
@@ -153,6 +168,11 @@ if __name__ == "__main__":
     print(list)
     list.delete(5)
     print(list)
+
+    for i in list.reverse_iter():
+        print(i, end="")
+    print("")
+
     list.delete(2)
     print(list)
     list.delete(1)
