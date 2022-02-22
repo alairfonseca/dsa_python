@@ -61,6 +61,35 @@ class SinglyLinkedList:
 
         return None
 
+    def delete(self, index):
+        if not self._head:
+            raise Exception("Empty list")
+        
+        if index == 0:
+            if self._head == self._tail:
+                self._head = None
+                self._tail = None
+                return
+            else:
+                self._head = self._head._next
+
+        cursor = self._head
+        cursor_count = 1
+        
+        while cursor:
+            if cursor_count == index:
+                if (cursor._next is not None) & (not cursor._next._next):
+                    cursor._next = None
+                    self._tail = cursor
+                elif cursor._next._next:
+                    cursor._next = cursor._next._next
+                else:
+                    cursor._next = None
+
+            cursor_count += 1
+            cursor = cursor._next
+        
+
     def __iter__(self):
         node = self._head
 
@@ -110,3 +139,16 @@ if __name__ == "__main__":
 
     print(slinklist.search(2))
     print(slinklist.search(11))
+
+    print("deleting...")
+    slinklist.delete(1)
+    print(1, "-", slinklist)
+
+    slinklist.delete(6)
+    print(6, "-", slinklist)
+    
+    slinklist.delete(1)
+    print(1, "-", slinklist)
+
+    slinklist.delete(0)
+    print(0, "-", slinklist)
