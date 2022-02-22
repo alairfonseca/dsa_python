@@ -29,6 +29,8 @@ class CircularSinglyLinkedList:
         if index > self.n:
             raise IndexError("Index out of range")
 
+        index = index % self.n
+        
         new_node = Node(value)
         
         if index == 0:
@@ -39,8 +41,6 @@ class CircularSinglyLinkedList:
             self.n += 1
 
             return
-        elif index < 0:
-            index = index % self.n
 
         cursor = self.head
         cursor_count = 1
@@ -90,4 +90,10 @@ if __name__ == "__main__":
     print(list)
     list.insert(6, 3)
     print(list)
+    list.insert(7, -2)
+    print(list)
+    list.insert(8, -7)
+    print(list)
+
+    print("tail next:", list.tail.next)
 
