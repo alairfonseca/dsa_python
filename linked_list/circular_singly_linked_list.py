@@ -56,6 +56,16 @@ class CircularSinglyLinkedList:
             cursor = cursor.next
             cursor_count += 1
 
+    def search(self, value):
+        if not self.head:
+            raise Exception("Empty list")
+        
+        for i in self:
+            if i.value == value:
+                return i.value
+
+        return None
+    
     def delete(self, index):
         if index > self.n:
             raise IndexError("Index out of range")
@@ -124,6 +134,9 @@ if __name__ == "__main__":
     list.insert(8, -7)
     print(list)
 
+    print(list.search(7))
+    print(list.search(8))
+
     list.delete(1)
     print(list)
     list.delete(-1)
@@ -134,6 +147,10 @@ if __name__ == "__main__":
     print(list)
     list.delete(2)
     print(list)
+
+    print(list.search(5))
+    print(list.search(6))
+
     list.delete(2)
     print(list)
     list.delete(1)
