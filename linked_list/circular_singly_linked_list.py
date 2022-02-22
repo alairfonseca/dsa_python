@@ -52,6 +52,36 @@ class CircularSinglyLinkedList:
                 self.n += 1
                 
                 return
+            
+            cursor = cursor.next
+            cursor_count += 1
+
+    def delete(self, index):
+        if index > self.n:
+            raise IndexError("Index out of range")
+
+        index = index % self.n
+
+        if index == 0:
+            self.head = self.head.next
+            self.tail.next = self.head
+            self.n -= 1
+
+            return
+
+        cursor = self.head
+        cursor_count = 1
+
+        while cursor.next != self.head:
+            if cursor_count == index:
+                cursor.next = cursor.next.next
+
+                if cursor.next == self.head:
+                    self.tail = cursor
+
+                self.n -= 1
+                return
+
             cursor = cursor.next
             cursor_count += 1
 
@@ -83,7 +113,6 @@ if __name__ == "__main__":
     list.append(3)
     print(list)
 
-
     list.insert(4, 1)
     print(list)
     list.insert(5, 0)
@@ -93,6 +122,21 @@ if __name__ == "__main__":
     list.insert(7, -2)
     print(list)
     list.insert(8, -7)
+    print(list)
+
+    list.delete(1)
+    print(list)
+    list.delete(-1)
+    print(list)
+    list.delete(0)
+    print(list)
+    list.delete(-1)
+    print(list)
+    list.delete(2)
+    print(list)
+    list.delete(2)
+    print(list)
+    list.delete(1)
     print(list)
 
     print("tail next:", list.tail.next)
