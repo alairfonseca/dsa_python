@@ -59,6 +59,48 @@ class DoublyLinkedList:
             cursor = cursor.next
             cursor_count += 1
 
+    def delete(self, index):
+        if index >= self.n:
+            raise IndexError("Index out of range")
+
+        index = index % self.n
+
+        if index == 0:
+            if self.head == self.tail:
+                self.head = None
+                self.tail = None
+            else:
+                self.head = self.head.next
+            self.n -= 1
+            return
+
+        cursor = self.head
+        cursor_count = 1
+
+        while cursor:
+            if cursor_count == index:
+                if cursor.next.next:
+                    cursor.next = cursor.next.next
+                    cursor.next.next.prev = cursor
+                else:
+                    cursor.next = None
+                    self.tail = cursor
+
+                self.n -= 1
+                return
+            cursor = cursor.next
+            cursor_count += 1
+    
+    def search(self, value):
+        if not self.head:
+            raise Exception("Empty list")
+        
+        for i in self:
+            if i.value == value:
+                return i.value
+
+        return None
+
     def __iter__(self):
         node = self.head
 
@@ -102,3 +144,16 @@ if __name__ == "__main__":
     list.insert(8, 0)
     print(list)
 
+    print(list.search(4))
+    print(list.search(7))
+
+    list.delete(-1)
+    print(list)
+    list.delete(0)
+    print(list)
+    list.delete(5)
+    print(list)
+    list.delete(2)
+    print(list)
+
+    
