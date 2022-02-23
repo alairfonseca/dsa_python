@@ -33,6 +33,25 @@ def nth_to_last(list, n):
 
     return cursor1.value
 
+def partition(list, value):
+    cursor = list.head
+    list.tail = list.head
+
+    while cursor:
+        next_node = cursor.next
+        cursor.next = None
+
+        if cursor.value < value:
+            cursor.next = list.head
+            list.head = cursor
+        else:
+            list.tail.next = cursor
+            list.tail = cursor
+        cursor = next_node
+
+    if list.tail.next:
+        list.tail.next = None
+
 
 if __name__ == "__main__":
     list = LinkedList().generate(10, 0, 9)
@@ -48,3 +67,13 @@ if __name__ == "__main__":
     print(nth_to_last(list, 5))
     print(nth_to_last(list, 2))
     print(nth_to_last(list, 1))
+
+    print("partition...")
+    list3 = LinkedList().generate(10, 0, 99)
+    print(list3)
+    partition(list3, 40)
+    print(list3)
+
+
+
+
