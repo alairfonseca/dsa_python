@@ -17,6 +17,17 @@ class QueueL:
     def dequeue(self):
         self.start = (self.start + 1) % self.capacity
 
+    def peek(self):
+        if self.is_empty():
+            raise Exception("Queue is empty")
+        else:
+            return self.items[self.start]
+
+    def delete(self):
+        self.items = [None] * self.capacity
+        self.start = -1
+        self.top = -1
+
     def is_full(self):
         if self.top + 1 == self.start:
             return True
@@ -64,3 +75,8 @@ if __name__ == "__main__":
     
     print(q.is_empty())
     print(q.is_full())
+
+    print(q.peek())
+
+    q.delete()
+    print(q)
