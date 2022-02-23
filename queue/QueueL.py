@@ -27,7 +27,10 @@ class QueueL:
         return self.top == -1
 
     def __str__(self):
-        return "".join([str(x) for x in self.items])
+        if (self.top < self.start):
+            return "".join([str(x) for x in self.items[self.start :] + self.items[0 : self.top + 1]])
+        else:
+            return "".join([str(x) for x in self.items[self.start : self.top + 1]])
 
 if __name__ == "__main__":
     q = QueueL(6)
