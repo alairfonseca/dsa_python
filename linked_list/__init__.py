@@ -52,6 +52,28 @@ def partition(list, value):
     if list.tail.next:
         list.tail.next = None
 
+def sum_linked_lists(lista, listb):
+    a = lista.head
+    b = listb.head
+    carry = 0
+    result = LinkedList()
+
+    while a or b:
+        res = carry
+
+        if a:
+            res += a.value
+            a = a.next
+        if b:
+            res += b.value
+            b = b.next
+
+        carry = res // 10
+        
+        result.append(int(res % 10))
+
+    return result
+
 
 if __name__ == "__main__":
     list = LinkedList().generate(10, 0, 9)
@@ -75,5 +97,17 @@ if __name__ == "__main__":
     print(list3)
 
 
+    print("sum...")
+    lista = LinkedList()
+    lista.append(7)
+    lista.append(1)
+    lista.append(6)
 
+    listb = LinkedList()
+    listb.append(5)
+    listb.append(9)
+    listb.append(2)
+    print(lista)
+    print(listb)
+    print(sum_linked_lists(lista, listb))
 
