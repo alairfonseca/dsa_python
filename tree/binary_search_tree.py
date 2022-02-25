@@ -78,6 +78,40 @@ def search(root, target):
         else:
             return search(root.right, target)
 
+def min_value(root):
+    current = root
+
+    while current.left is not None:
+        current = current.left
+
+    return current
+
+def delete(root, target):
+    if not root:
+        return root
+    if target < root.data:
+        root.left = delete(root.left, target)
+    elif target > root.data:
+        root.right = delete(root.right, target)
+    else:
+        if root.left is None:
+            temp = root.right
+            root = None
+            
+            return temp
+        
+        if root.right is None:
+            temp = root.left
+            root = None
+            
+            return temp
+
+        temp = min_value(root.right)
+        root.data = temp.data
+        root.right = delete(root.right, temp.data)
+
+    return root
+
 
 if __name__ == "__main__":
     bst = BSTNode(None)
@@ -105,5 +139,9 @@ if __name__ == "__main__":
     print(search(bst, 43))
     print(search(bst, 71))
     print("--------------------")
+    print("deleting 45, 90...")
+    delete(bst, 45)
+    delete(bst, 90)
     print("--------------------")
+    levelorder_traversal(bst)
     print("--------------------")
