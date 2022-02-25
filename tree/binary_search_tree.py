@@ -59,6 +59,26 @@ def levelorder_traversal(root):
         if root._value._value.right is not None:
             q.enqueue(root._value._value.right)
 
+def search(root, target):
+    if root.data == target:
+        return root.data
+
+    if target < root.data:
+        if not root.left:
+            return "Not found"
+        if root.left.data == target:
+            return root.left.data
+        else:
+            return search(root.left, target)
+    else:
+        if not root.right:
+            return "Not found"
+        if root.right.data == target:
+            return root.right.data
+        else:
+            return search(root.right, target)
+
+
 if __name__ == "__main__":
     bst = BSTNode(None)
 
@@ -79,4 +99,11 @@ if __name__ == "__main__":
     postorder_traversal(bst)
     print("--------------------")
     levelorder_traversal(bst)
+    print("--------------------")
+    print(search(bst, 65))
+    print(search(bst, 45))
+    print(search(bst, 43))
+    print(search(bst, 71))
+    print("--------------------")
+    print("--------------------")
     print("--------------------")
