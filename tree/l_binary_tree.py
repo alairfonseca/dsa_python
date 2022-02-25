@@ -43,6 +43,10 @@ class LBinaryTree:
         self.postorder_traversal(index * 2 + 1)
         print(self.list[index])
 
+    def levelorder_traversal(self, index):
+        for i in range(index, self.last_used_index + 1):
+            print(self.list[i])
+
 if __name__ == "__main__":
     t = LBinaryTree(10)
     
@@ -63,6 +67,8 @@ if __name__ == "__main__":
     t.inorder_traversal(1)
     print("---------------------")
     t.postorder_traversal(1)
+    print("---------------------")
+    t.levelorder_traversal(1)
 
     print("---------------------")
     print(t.search("tea"))
