@@ -47,6 +47,18 @@ class LBinaryTree:
         for i in range(index, self.last_used_index + 1):
             print(self.list[i])
 
+    def delete(self, value):
+        if self.last_used_index == 0:
+            return "Tree is empty"
+        
+        for i in range(1, self.last_used_index + 1):
+            if self.list[i] == value:
+                self.list[i] = self.list[self.last_used_index]
+                self.list[self.last_used_index] = None
+                self.last_used_index -= 1
+                
+                return
+
 if __name__ == "__main__":
     t = LBinaryTree(10)
     
@@ -68,6 +80,9 @@ if __name__ == "__main__":
     print("---------------------")
     t.postorder_traversal(1)
     print("---------------------")
+    t.levelorder_traversal(1)
+    print("---------------------")
+    t.delete("coffee")
     t.levelorder_traversal(1)
 
     print("---------------------")
