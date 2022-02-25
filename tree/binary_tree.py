@@ -89,6 +89,24 @@ def insert(node, value):
             root._value._value.right = new_node
             return
 
+def get_deepest_node(node):
+    if not node:
+        return
+
+    q = CQueue()
+    q.enqueue(node)
+
+    while not q.is_empty():
+        root = q.dequeue()
+        
+        if root._value._value.left is not None:
+            q.enqueue(root._value._value.left)
+        if root._value._value.right is not None:
+            q.enqueue(root._value._value.right)
+
+    deepest = root._value._value
+    return deepest
+
 if __name__ == "__main__":
     t = LLTree("drinks")
     
@@ -114,5 +132,7 @@ if __name__ == "__main__":
 
     print("--------------")
     insert(t, "hue")
-    insert(t, "he2")
+    insert(t, "hue2")
     levelorder_traversal(t)
+
+    print("deeep", get_deepest_node(t))
