@@ -1,6 +1,6 @@
 from .singly_linked_list import SinglyLinkedList, Node
 
-class Queue:
+class CQueue:
     def __init__(self):
         self.items = SinglyLinkedList()
 
@@ -19,7 +19,7 @@ class Queue:
             raise Exception("Queue is empty")
     
     def is_empty(self):
-        return len(self.items) > 0
+        return len(self.items) == 0
 
     def delete(self):
         self.items = SinglyLinkedList()
@@ -31,7 +31,7 @@ class Queue:
         return len(self.items)
 
 if __name__ == "__main__":
-    q = Queue()
+    q = CQueue()
 
     q.enqueue(1)
     q.enqueue(2)

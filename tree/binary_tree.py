@@ -1,13 +1,13 @@
-import sys
-sys.path.insert(1, "/Users/alairfonseca/Documents/workspaces/study/algorithms/dsa_python/queue/queue.py")
-#from . binary_tree import Queue
-import queue
+from cqueue import CQueue
 
 class LLTree:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
+
+    def __str__(self):
+        return self.data
 
 def preorder_traversal(node):
     if not node:
@@ -33,16 +33,37 @@ def postorder_traversal(node):
 def levelorder_traversal(node):
     if not node:
         return
-    q = queue.Queue()
+    
+    q = CQueue()
     q.enqueue(node)
 
     while not q.is_empty():
         root = q.dequeue()
-        print(root.value.data)
-        if root.value.left is not None:
-            q.enqueue(root.value.left)
-        if root.value.right is not None:
-            q.enqueue((root.value.right))
+        print(root)
+        if root._value._value.left is not None:
+            q.enqueue(root._value._value.left)
+        if root._value._value.right is not None:
+            q.enqueue(root._value._value.right)
+
+def search_binary_tree(node, target):
+    if not node:
+        return
+
+    q = CQueue()
+    q.enqueue(node)
+    
+    while not q.is_empty():
+        root = q.dequeue()
+        
+        if root._value._value.data == target:
+            return root._value._value.data
+
+        if root._value._value.left is not None:
+            q.enqueue(root._value._value.left)
+        if root._value._value.right is not None:
+            q.enqueue(root._value._value.right)
+
+    return "Target not found"
 
 if __name__ == "__main__":
     t = LLTree("drinks")
@@ -59,3 +80,10 @@ if __name__ == "__main__":
     inorder_traversal(t)
     print("--------------")
     postorder_traversal(t)
+    print("--------------")
+    levelorder_traversal(t)
+
+    print("--------------")
+    print(search_binary_tree(t, "tea"))
+    print(search_binary_tree(t, "coffe"))
+    print(search_binary_tree(t, "coffee"))
