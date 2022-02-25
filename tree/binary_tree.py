@@ -65,6 +65,30 @@ def search_binary_tree(node, target):
 
     return "Target not found"
 
+def insert(node, value):
+    new_node = LLTree(value)
+
+    if not node:
+        node = new_node
+        return
+
+    q = CQueue()
+    q.enqueue(node)
+
+    while not q.is_empty():
+        root = q.dequeue()
+
+        if root._value._value.left is not None:
+            q.enqueue(root._value._value.left)
+        else:
+            root._value._value.left = new_node
+            return
+        if root._value._value.right is not None:
+            q.enqueue(root._value._value.right)
+        else:
+            root._value._value.right = new_node
+            return
+
 if __name__ == "__main__":
     t = LLTree("drinks")
     
@@ -87,3 +111,8 @@ if __name__ == "__main__":
     print(search_binary_tree(t, "tea"))
     print(search_binary_tree(t, "coffe"))
     print(search_binary_tree(t, "coffee"))
+
+    print("--------------")
+    insert(t, "hue")
+    insert(t, "he2")
+    levelorder_traversal(t)
