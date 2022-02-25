@@ -1,3 +1,8 @@
+import sys
+sys.path.insert(1, "/Users/alairfonseca/Documents/workspaces/study/algorithms/dsa_python/queue/queue.py")
+#from . binary_tree import Queue
+import queue
+
 class LLTree:
     def __init__(self, data):
         self.data = data
@@ -24,6 +29,20 @@ def postorder_traversal(node):
     postorder_traversal(node.left)
     postorder_traversal(node.right)
     print(node.data)
+
+def levelorder_traversal(node):
+    if not node:
+        return
+    q = queue.Queue()
+    q.enqueue(node)
+
+    while not q.is_empty():
+        root = q.dequeue()
+        print(root.value.data)
+        if root.value.left is not None:
+            q.enqueue(root.value.left)
+        if root.value.right is not None:
+            q.enqueue((root.value.right))
 
 if __name__ == "__main__":
     t = LLTree("drinks")

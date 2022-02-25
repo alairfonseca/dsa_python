@@ -1,5 +1,4 @@
-from singly_linked_list import SinglyLinkedList
-from singly_linked_list import Node
+from .singly_linked_list import SinglyLinkedList, Node
 
 class Queue:
     def __init__(self):
