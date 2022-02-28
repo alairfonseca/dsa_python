@@ -5,6 +5,61 @@ class BinaryHeap:
         self.heap_size = 0
         self.heap_type = heap_type
 
+    def extract_heapfy(self, index):
+        left_index = index * 2
+        right_index = index * 2 + 1
+        swap_child = 0
+
+        if self.heap_size < left_index:
+            return
+        elif self.heap_size == left_index:
+            if self.heap_type == "min":
+                if self.items[index] > self.items[left_index]:
+                    temp = self.items[index]
+                    self.items[index] = self.items[left_index]
+                    self.items[left_index] = temp
+            else:
+                if self.items[index] < self.items[left_index]:
+                    temp = self.items[index]
+                    self.items[index] = self.items[left_index]
+                    self.items[left_index] = temp
+            return
+        else:
+            if self.heap_type == "min":
+                if self.items[left_index] < self.items[right_index]:
+                    swap_child = left_index
+                else:
+                    swap_child = right_index
+                
+                if self.items[index] > self.items[swap_child]:
+                    temp = self.items[index]
+                    self.items[index] = self.items[swap_child]
+                    self.items[swap_child] = temp
+            else:
+                if self.items[left_index] > self.items[right_index]:
+                    swap_child = left_index
+                else:
+                    swap_child = right_index
+                
+                if self.items[index] < self.items[swap_child]:
+                    temp = self.items[index]
+                    self.items[index] = self.items[swap_child]
+                    self.items[swap_child] = temp
+            
+            self.extract_heapfy(swap_child)
+
+    def extract(self):
+        if self.heap_size == 0:
+            return
+        else:
+            extracted_node = self.items[1]
+            self.items[1] = self.items[self.heap_size]
+            self.items[self.heap_size] = None
+            self.heap_size -= 1
+            self.extract_heapfy(1)
+
+            return extracted_node
+
     def insert_heapfy(self, index):
         parent_index = index // 2
         if index <= 1:
@@ -40,7 +95,7 @@ class BinaryHeap:
     def __iter__(self):
         for i in range(1, self.heap_size + 1):
             yield self.items[i]
-
+    
 def levelorder_traversal(heap):
     if not heap:
         return
@@ -55,6 +110,8 @@ if __name__ == "__main__":
     bh.insert(3)
     bh.insert(2)
     bh.insert(1)
+
+    bh.extract()
 
     print("--------------------")
     print(len(bh))
