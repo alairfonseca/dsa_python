@@ -40,12 +40,9 @@ class Trie:
         if not len(node.children.keys()):
             result.append(prefix)
             return prefix
-        
-        strng = ""
 
         for k in node.children:
-            strng += k
-            strng += self.rec_str(node.children[k], (prefix + k))
+            self.rec_str(node.children[k], (prefix + k))
 
         return ", ".join(result)
 
