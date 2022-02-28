@@ -64,8 +64,3 @@ if __name__ == "__main__":
     print(t.search("app"), end=" - ")
     print(t.search("app1"), end=" - ")
     print(t.search("apple"))
-    print("----------------------")
-    print("----------------------")
-    print("----------------------")
-    print("----------------------")
-    print("----------------------")
