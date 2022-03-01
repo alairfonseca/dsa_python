@@ -1,5 +1,3 @@
-from binary_heap import BinaryHeap
-
 def heapfy(sequence, n, i):
     smallest = i
     l = 2 * i + 1
