@@ -1,4 +1,4 @@
-def merge(sequence, l, m, r):
+def merge(sequence, i, m, r):
     n1 = m - l + 1
     n2 = r - m
 
