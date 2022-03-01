@@ -4,7 +4,7 @@ def bubble_sort(sequence):
             if sequence[j] > sequence[j + 1]:
                 sequence[j], sequence[j + 1] = sequence[j + 1], sequence[j]
 
-    print(sequence)
+    return sequence
 
 if __name__ == "__main__":
     l = [2, 1, 7, 8, 6, 5, 9, 3, 4]
