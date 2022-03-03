@@ -19,6 +19,18 @@ class Graph:
                     visited.append(adjacent)
                     queue.append(adjacent)
 
+    def dfs(self, vertex):
+        visited = [vertex]
+        stack = [vertex]
+
+        while stack:
+            current_vertex = stack.pop()
+            print(current_vertex)
+            for adjacent in self.gdict[current_vertex]:
+                if adjacent not in visited:
+                    visited.append(adjacent)
+                    stack.append(adjacent)
+
 
 if __name__ == "__main__":
     dic = {
@@ -32,5 +44,10 @@ if __name__ == "__main__":
 
     g = Graph(dic)
 
-    #g.bfs("a")
+    g.bfs("a")
+    print("--------------------------")
     g.bfs("c")
+    print("--------------------------")
+    g.dfs("a")
+    print("--------------------------")
+    print("--------------------------")
