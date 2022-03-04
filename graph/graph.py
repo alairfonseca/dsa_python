@@ -31,7 +31,6 @@ class Graph:
                     visited.append(adjacent)
                     stack.append(adjacent)
 
-
 if __name__ == "__main__":
     dic = {
         "a": ["b", "c"],
