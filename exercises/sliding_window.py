@@ -1,3 +1,5 @@
+import math
+
 # Given an array, find the average of all subarrays of ‘K’ contiguous elements in it.
 def average_calc(sequence, k):
     result = []
@@ -33,26 +35,22 @@ def maximum_sum(sequence, k):
 
 # Given an array of positive numbers and a positive number ‘S,’ find the length of the smallest contiguous subarray whose sum is greater than or equal to ‘S’. Return 0 if no such subarray exists.
 def smallest_subarray_greater_than_s(sequence, s):
-    result = 0
-    window_size = 1
+    result = math.inf
     window_start = 0
     window_sum = 0
 
-    while window_size < len(sequence):
-        window_start = 0
-        window_sum = 0
-        
-        for window_end in range(len(sequence)):
-            window_sum += sequence[window_end]
-            
-            if window_sum >= s:
-                print((window_end - window_start) + 1)
-                return
+    for window_end in range(len(sequence)):
+        window_sum += sequence[window_end]
 
-            if window_end >= window_size - 1:
-                window_sum -= sequence[window_start]
-                window_start += 1
-        window_size += 1
+        while window_sum >= s:
+            result = min(result, (window_end - window_start) + 1)
+            window_sum -= sequence[window_start]
+            window_start += 1
+        
+    if (result == math.inf):
+        print(0)
+        return
+    print(result)
 
 
 if __name__ == "__main__":
