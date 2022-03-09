@@ -103,6 +103,37 @@ def non_repeat_substring(str1):
 
     print(result)
 
+# Given a string with lowercase letters only, if you are allowed to replace no more than k letters with any letter, find the length of the longest substring having the same letters after replacement.
+def length_of_longest_substring(str1, k):
+    result = 0
+    max_freq = 0
+    frequency = {}
+    window_start = 0
+    current_char = ""
+
+    for window_end in range(len(str1)):
+        current_char = str1[window_end]
+
+        if current_char not in frequency:
+            frequency[current_char] = 0
+        frequency[current_char] += 1
+        
+        max_freq = max(max_freq, frequency[current_char])
+
+        if ((window_end - window_start + 1) - max_freq) > k:
+            first_char = str1[window_start]
+            frequency[first_char] -= 1
+
+            window_start += 1
+
+        result = max(result, window_end - window_start + 1)
+
+    print(result)
+
+# Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s, find the length of the longest contiguous subarray having all 1s.
+def length_of_longest_substring(arr, k):
+    print(arr, k)
+
 if __name__ == "__main__":
     a = [1, 3, 2, 6, -1, 4, 1, 8, 2]
     average_calc(a, 5)
@@ -131,6 +162,14 @@ if __name__ == "__main__":
     for s in strings:
         non_repeat_substring(s)
     print("===========================")
+    strings = ["aabccbb", "abbcb", "abccde"]
+    ks = [2, 1, 1]
+    for (i, s) in enumerate(strings):
+        length_of_longest_substring(s, ks[i])
     print("===========================")
+    arrays = [[0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1], [0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1]]
+    ks = [2, 3]
+    for (i, a) in enumerate(arrays):
+        length_of_longest_substring(a, ks[i])
     print("===========================")
     print("===========================")
