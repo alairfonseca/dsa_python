@@ -79,13 +79,13 @@ def fruits_into_baskets(trees):
     for window_end in range(len(trees)):
         collected.append(trees[window_end])
 
-        if len(set(collected)) > 2:
+        while len(set(collected)) > 2:
             collected.pop(window_start)
     
     print(len(collected))
     print(collected)
 
-            
+# 
 
 if __name__ == "__main__":
     a = [1, 3, 2, 6, -1, 4, 1, 8, 2]
@@ -107,10 +107,11 @@ if __name__ == "__main__":
     for (i, s) in enumerate(strings):
         longest_substring_with_k_distinct(s, ks[i])
     print("===========================")
-    farms = [['A', 'B', 'C', 'A', 'C'], ['A', 'B', 'C', 'B', 'B', 'C']]
+    farms = [['A', 'B', 'A', 'A', 'C'], ['A', 'B', 'C', 'B', 'B', 'C'], ['A', 'B', 'C', 'A', 'C']]
     for f in farms:
         fruits_into_baskets(f)
     print("===========================")
+
     print("===========================")
     print("===========================")
     print("===========================")
