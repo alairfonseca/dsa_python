@@ -52,6 +52,25 @@ def smallest_subarray_greater_than_s(sequence, s):
         return
     print(result)
 
+# Given a string, find the length of the longest substring in it with no more than K distinct characters.
+def longest_substring_with_k_distinct(str1, k):
+    result = 0
+    distinct_chars = set()
+    longest_subs = ""
+
+    for window_end in range(len(str1)):
+        longest_subs += str1[window_end]
+        distinct_chars.add(str1[window_end])
+
+        if len(distinct_chars) <= k:
+            result = max(result, len(longest_subs))
+        
+        while len(distinct_chars) > k:
+            longest_subs = longest_subs[1:]
+            distinct_chars = set(longest_subs)
+
+    print(result)
+            
 
 if __name__ == "__main__":
     a = [1, 3, 2, 6, -1, 4, 1, 8, 2]
@@ -67,5 +86,10 @@ if __name__ == "__main__":
     a = [3, 4, 1, 1, 6]
     smallest_subarray_greater_than_s(a, 8)
     print("===========================")
+    strings = ["araaci", "araaci", "cbbebi", "cbbebi"]
+    ks = [2, 1, 3, 10]
+
+    for (i, s) in enumerate(strings):
+        longest_substring_with_k_distinct(s, ks[i])
     print("===========================")
     print("===========================")
