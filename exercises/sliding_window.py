@@ -85,7 +85,23 @@ def fruits_into_baskets(trees):
     print(len(collected))
     print(collected)
 
-# 
+# Given a string, find the length of the longest substring, which has all distinct characters.
+def non_repeat_substring(str1):
+    result = 0
+    visited = {}
+    window_start = 0
+
+    for window_end in range(len(str1)):
+        current_char = str1[window_end]
+
+        if current_char in visited:
+            window_start = max(window_start, visited[str1[window_end]] + 1)
+
+        visited[current_char] = window_end
+        
+        result = max(result, window_end - window_start + 1)
+
+    print(result)
 
 if __name__ == "__main__":
     a = [1, 3, 2, 6, -1, 4, 1, 8, 2]
@@ -111,7 +127,9 @@ if __name__ == "__main__":
     for f in farms:
         fruits_into_baskets(f)
     print("===========================")
-
+    strings = ["aabccbb", "abbbb", "abccde"]
+    for s in strings:
+        non_repeat_substring(s)
     print("===========================")
     print("===========================")
     print("===========================")
