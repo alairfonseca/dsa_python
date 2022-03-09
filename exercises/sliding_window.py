@@ -70,6 +70,21 @@ def longest_substring_with_k_distinct(str1, k):
             distinct_chars = set(longest_subs)
 
     print(result)
+
+# ...Write a function to return the maximum number of fruits in both baskets
+def fruits_into_baskets(trees):
+    collected = []
+    window_start = 0
+
+    for window_end in range(len(trees)):
+        collected.append(trees[window_end])
+
+        if len(set(collected)) > 2:
+            collected.pop(window_start)
+    
+    print(len(collected))
+    print(collected)
+
             
 
 if __name__ == "__main__":
@@ -91,5 +106,12 @@ if __name__ == "__main__":
 
     for (i, s) in enumerate(strings):
         longest_substring_with_k_distinct(s, ks[i])
+    print("===========================")
+    farms = [['A', 'B', 'C', 'A', 'C'], ['A', 'B', 'C', 'B', 'B', 'C']]
+    for f in farms:
+        fruits_into_baskets(f)
+    print("===========================")
+    print("===========================")
+    print("===========================")
     print("===========================")
     print("===========================")
