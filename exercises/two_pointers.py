@@ -53,6 +53,31 @@ def make_squares(arr):
 
     return result
 
+# Given an array of unsorted numbers, find all unique triplets in it that add up to zero.
+def search_triplets(arr):
+    result = []
+    arr.sort()
+
+    for i in range(len(arr)):
+        if arr[i] > 0:
+            continue
+        search_pair(arr, arr[i], i + 1, result)
+
+    return result
+
+def search_pair(arr, target, a, triplets):
+    b = len(arr) - 1
+
+    while a < b:
+        if arr[a] + arr[b] + target == 0:
+            triplets.append([target, arr[a], arr[b]])
+            a += 1
+            b -= 1
+        elif arr[a] + arr[b] + target < 0:
+            a += 1
+        else:
+            b -= 1
+
 if __name__ == "__main__":
     arrays = [[1, 2, 3, 4, 6], [2, 5, 9, 11]]
     ts = [6, 11]
@@ -70,6 +95,9 @@ if __name__ == "__main__":
         print(make_squares(a))
     
     print("===========================")
+    arrays = [[-3, 0, 1, 2, -1, 1, -2], [-5, 2, -1, -2, 3]]
+    for a in arrays:
+        print(search_triplets(a))
     print("===========================")
     print("===========================")
     print("===========================")
