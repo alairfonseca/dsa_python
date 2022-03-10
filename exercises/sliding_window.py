@@ -132,7 +132,25 @@ def length_of_longest_substring(str1, k):
 
 # Given an array containing 0s and 1s, if you are allowed to replace no more than ‘k’ 0s with 1s, find the length of the longest contiguous subarray having all 1s.
 def length_of_longest_substring(arr, k):
-    print(arr, k)
+    result = 0
+    replaces = 0
+    window_start = 0
+    zeros_indexes = []
+
+    for window_end in range(len(arr)):
+        current_digit = arr[window_end]
+
+        if current_digit == 0:
+            zeros_indexes.append(window_end)
+            replaces += 1
+
+        if replaces > k:
+            window_start = zeros_indexes.pop(0) + 1
+            replaces -= 1
+
+        result = max(result, window_end - window_start + 1)
+
+    print(result)
 
 if __name__ == "__main__":
     a = [1, 3, 2, 6, -1, 4, 1, 8, 2]
