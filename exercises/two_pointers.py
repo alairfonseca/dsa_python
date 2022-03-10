@@ -106,7 +106,26 @@ def search_pairs(arr, first_element, target, a, triplets):
 
 # Given an array arr of unsorted numbers and a target sum, count all triplets in it such that arr[i] + arr[j] + arr[k] < target where i, j, and k are three different indices. Write a function to return the count of such triplets.
 def triplet_with_smaller_sum(arr, target):
+    result = 0
+    arr.sort()
+    
+    for i in range(len(arr)):
+        result += search_pairs2(arr, target - arr[i], i + 1)
+    
+    return result
 
+def search_pairs2(arr, target, a):
+    b = len(arr) - 1
+    count = 0
+
+    while a < b:
+        if arr[a] + arr[b] < target:
+            count += b - a
+            a += 1
+        else:
+            b -= 1
+    
+    return count
 
 if __name__ == "__main__":
     arrays = [[1, 2, 3, 4, 6], [2, 5, 9, 11]]
