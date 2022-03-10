@@ -78,6 +78,36 @@ def search_pair(arr, target, a, triplets):
         else:
             b -= 1
 
+# Given an array of unsorted numbers and a target number, find a triplet in the array whose sum is as close to the target number as possible, return the sum of the triplet. If there are more than one such triplet, return the sum of the triplet with the smallest sum.
+def triplet_sum_close_to_target(arr, target_sum):
+    result = 0
+    triplets = []
+    arr.sort()
+
+    for i in range(len(arr)):
+        if arr[i] > target_sum:
+            continue
+        search_pairs(arr, arr[i], target_sum, i + 1, triplets)
+    
+    for a in triplets:
+        result = max(result, sum(a))
+    
+    return result
+
+def search_pairs(arr, first_element, target, a, triplets):
+    b = len(arr) - 1
+
+    while a < b:
+        if first_element + arr[a] + arr[b] <= target:
+            triplets.append([first_element, arr[a], arr[b]])
+            a += 1
+        elif first_element + arr[a] + arr[b] > target:
+            b -= 1
+
+# Given an array arr of unsorted numbers and a target sum, count all triplets in it such that arr[i] + arr[j] + arr[k] < target where i, j, and k are three different indices. Write a function to return the count of such triplets.
+def triplet_with_smaller_sum(arr, target):
+
+
 if __name__ == "__main__":
     arrays = [[1, 2, 3, 4, 6], [2, 5, 9, 11]]
     ts = [6, 11]
@@ -98,8 +128,18 @@ if __name__ == "__main__":
     arrays = [[-3, 0, 1, 2, -1, 1, -2], [-5, 2, -1, -2, 3]]
     for a in arrays:
         print(search_triplets(a))
+
     print("===========================")
+    arrays = [[-2, 0, 1, 2], [-3, -1, 1, 2], [1, 0, 1, 1]]
+    ts = [2, 1, 100]
+    for (i, a) in enumerate(arrays):
+        print(triplet_sum_close_to_target(a, ts[i]))
+    
     print("===========================")
+    arrays = [[-1, 0, 2, 3], [-1, 4, 2, 1, 3]]
+    ts = [3, 5]
+    for (i, a) in enumerate(arrays):
+        print(triplet_with_smaller_sum(a, ts[i]))
     print("===========================")
     print("===========================")
     print("===========================")
