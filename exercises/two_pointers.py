@@ -127,6 +127,28 @@ def search_pairs2(arr, target, a):
     
     return count
 
+# Given an array with positive numbers and a positive target number, find all of its contiguous subarrays whose product is less than the target number.
+def find_subarrays(arr, target):
+    result = []
+    a = 0
+    b = 1
+
+    product = 1
+
+    while a <= b and b < len(arr):
+        for i in range(a, b+1):
+            product *= arr[i]
+
+        if product < target:
+            result.append(arr[a:b+1])
+            b += 1
+        else:
+            result.append([arr[a]])
+            product = 1
+            a += 1
+    
+    return result
+
 if __name__ == "__main__":
     arrays = [[1, 2, 3, 4, 6], [2, 5, 9, 11]]
     ts = [6, 11]
@@ -159,14 +181,12 @@ if __name__ == "__main__":
     ts = [3, 5]
     for (i, a) in enumerate(arrays):
         print(triplet_with_smaller_sum(a, ts[i]))
+    
     print("===========================")
-    print("===========================")
-    print("===========================")
-    print("===========================")
-    print("===========================")
-    print("===========================")
-    print("===========================")
-    print("===========================")
+    arrays = [[2, 5, 3, 10], [8, 2, 6, 5]]
+    ts = [30, 50]
+    for (i, a) in enumerate(arrays):
+        print(find_subarrays(a, ts[i]))
     print("===========================")
     print("===========================")
     print("===========================")
