@@ -149,6 +149,25 @@ def find_subarrays(arr, target):
     
     return result
 
+# Given an array containing 0s, 1s and 2s, sort the array in-place. You should treat numbers of the array as objects, hence, we can’t count 0s, 1s, and 2s to recreate the array.
+def dutch_flag_sort(arr):
+    low, high = 0, len(arr) - 1
+    i = 0
+    
+    while(i <= high):
+        if arr[i] == 0:
+            arr[i], arr[low] = arr[low], arr[i]
+        
+            i += 1
+            low += 1
+        elif arr[i] == 1:
+            i += 1
+        else:
+            arr[i], arr[high] = arr[high], arr[i]
+            high -= 1
+    
+    return arr
+
 if __name__ == "__main__":
     arrays = [[1, 2, 3, 4, 6], [2, 5, 9, 11]]
     ts = [6, 11]
@@ -187,7 +206,11 @@ if __name__ == "__main__":
     ts = [30, 50]
     for (i, a) in enumerate(arrays):
         print(find_subarrays(a, ts[i]))
+    
     print("===========================")
+    arrays = [[1, 0, 2, 1, 0], [2, 2, 0, 1, 2, 0]]
+    for a in enumerate(arrays):
+        print(dutch_flag_sort(a))
     print("===========================")
     print("===========================")
     print("===========================")
