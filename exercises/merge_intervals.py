@@ -34,6 +34,30 @@ def merge(intervals):
 
     return merged
 
+# Given a list of non-overlapping intervals sorted by their start time, insert a given interval at the correct position and merge all necessary intervals to produce a list that has only mutually exclusive intervals.
+def insert(intervals, new_interval):
+    intervals.append(new_interval)
+    intervals.sort(key=lambda x: x[0])
+
+    merged = []
+    start = intervals[0][0]
+    end = intervals[0][1]
+
+    for i in range(1, len(intervals)):
+        interval = intervals[i]
+        
+        if interval[0] < end:
+            end = max(interval[1], end)
+        else:
+            merged.append([start, end])
+            start = interval[0]
+            end = interval[1]
+
+    merged.append([start, end])
+
+    return merged
+
+
 def main():
     print("Merged intervals: ", end='')
     for i in merge([Interval(1, 4), Interval(2, 5), Interval(7, 9)]):
@@ -49,5 +73,10 @@ def main():
     for i in merge([Interval(1, 4), Interval(2, 6), Interval(3, 5)]):
         i.print_interval()
     print()
+    
+    print("=====================================")
+    print("Intervals after inserting the new interval: " + str(insert([[1, 3], [5, 7], [8, 12]], [4, 6])))
+    print("Intervals after inserting the new interval: " + str(insert([[1, 3], [5, 7], [8, 12]], [4, 10])))
+    print("Intervals after inserting the new interval: " + str(insert([[2, 3], [5, 7]], [1, 4])))
 
 main()
