@@ -57,6 +57,31 @@ def insert(intervals, new_interval):
 
     return merged
 
+# Given two lists of intervals, find the intersection of these two lists. Each list consists of disjoint intervals sorted on their start time.
+def merge2(intervals_a, intervals_b):
+    result = []
+
+    intervals = intervals_a + intervals_b
+    intervals.sort(key=lambda x: x[0])
+
+    start = intervals[0][0]
+    end = intervals[0][1]
+    
+    print(intervals)
+    for i in range(1, len(intervals)):
+        interval = intervals[i]
+
+        if interval[0] <= end:
+            start = max(interval[0], start)
+            end = min(interval[1], end)
+            result.append([start, end])
+        else:
+            start = interval[0]
+            end = interval[1]
+
+    result.append([max(intervals[-2][0], start), min(intervals[-2][1], end)])
+
+    return result
 
 def main():
     print("Merged intervals: ", end='')
@@ -78,5 +103,9 @@ def main():
     print("Intervals after inserting the new interval: " + str(insert([[1, 3], [5, 7], [8, 12]], [4, 6])))
     print("Intervals after inserting the new interval: " + str(insert([[1, 3], [5, 7], [8, 12]], [4, 10])))
     print("Intervals after inserting the new interval: " + str(insert([[2, 3], [5, 7]], [1, 4])))
+
+    print("=====================================")
+    print("Intervals Intersection: " + str(merge2([[1, 3], [5, 6], [7, 9]], [[2, 3], [5, 7]])))
+    print("Intervals Intersection: " + str(merge2([[1, 3], [5, 7], [9, 12]], [[5, 10]])))
 
 main()
