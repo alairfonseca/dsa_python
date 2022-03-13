@@ -16,11 +16,30 @@ def cyclic_sort(nums):
   
     return nums
 
+# We are given an array containing n distinct numbers taken from the range 0 to n. Since the array has only n numbers out of the total n+1 numbers, find the missing number.
+def find_missing_number(nums):
+    highest = 0
+    actual_sum = 0
+
+    for i in nums:
+        actual_sum += i
+        if i > highest:
+            highest = i
+    
+    no_missing_sum = sum(range(0, highest + 1))
+
+    return no_missing_sum - actual_sum
+
 if __name__ == "__main__":
     arrays = [[3, 1, 5, 4, 2], [2, 6, 4, 3, 1, 5], [1, 5, 6, 4, 3, 2]]
     for a in arrays:
         print(cyclic_sort(a))
+    
     print("==========================")
+    arrays = [[4, 0, 3, 1], [8, 3, 5, 2, 4, 6, 0, 1]]
+    for a in arrays:
+        print(find_missing_number(a))
+
     print("==========================")
     print("==========================")
     print("==========================")
