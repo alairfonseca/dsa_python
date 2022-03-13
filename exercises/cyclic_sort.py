@@ -70,6 +70,25 @@ def find_duplicate(nums):
 
     return -1
 
+# We are given an unsorted array containing n numbers taken from the range 1 to n. The array has some numbers appearing twice, find all these duplicate numbers using constant space.
+def find_all_duplicates(nums):
+    duplicateNumbers = []
+    i = 0
+
+    while i < len(nums):
+        value = nums[i]
+
+        if value - 1 != i:
+            if nums[value -1] == nums[i]:
+                duplicateNumbers.append(value)
+                i += 1
+            else:
+                nums[value - 1], nums[i] = nums[i], nums[value - 1]
+        else:
+            i += 1
+
+    return duplicateNumbers
+
 if __name__ == "__main__":
     arrays = [[3, 1, 5, 4, 2], [2, 6, 4, 3, 1, 5], [1, 5, 6, 4, 3, 2]]
     for a in arrays:
@@ -91,3 +110,6 @@ if __name__ == "__main__":
         print(find_duplicate(a))
 
     print("==========================")
+    arrays = [[3, 4, 4, 5, 5], [5, 4, 7, 2, 3, 5, 3]]
+    for a in arrays:
+        print(find_all_duplicates(a))
