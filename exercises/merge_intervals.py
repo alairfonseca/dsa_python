@@ -67,7 +67,6 @@ def merge2(intervals_a, intervals_b):
     start = intervals[0][0]
     end = intervals[0][1]
     
-    print(intervals)
     for i in range(1, len(intervals)):
         interval = intervals[i]
 
